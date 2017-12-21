@@ -1,0 +1,10 @@
+goods开始
+
+1.父组建拿到子组件定义的方法
+
+<shopcart ref="food"></shopcart>
+
+methods:{
+	this.$refs.food.show()
+	//show是子组件shopcart定义的方法
+}
