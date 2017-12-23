@@ -37,7 +37,7 @@
 					</li>
 				</ul>
 			</div>
-			<shopcart  :select-foods='selectFoods' :delivery-price='seller.deliveryPrice' :min-price='seller.minPrice' ></shopcart>
+			<shopcart  :select-foods='selectFoods' :delivery-price='seller.deliveryPrice' :min-price='seller.minPrice'></shopcart>
 		</div>
 		<food :food="selectedFood" ref='food'></food>
 	</div>
@@ -106,7 +106,8 @@
 		},
 		methods :{
 			selectFood(food) {
-				this.selectedFood == food;
+				this.selectedFood = food;
+				console.log(this.selectedFood)
 				this.$refs.food.show();
 			},
 			selectMenu(index,event) {
