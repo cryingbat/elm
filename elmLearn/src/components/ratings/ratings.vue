@@ -1,6 +1,6 @@
 <template>
-	<div>
-		rating
+	<div class="ratings">
+		<div class="ratings-content"></div>
 	</div>
 </template>
 
@@ -9,5 +9,5 @@
 </script>
 
 <style type="text/css">
-	
+	.ratings{position: absolute;top: 174px;bottom: 0;width: 100%}
 </style>
