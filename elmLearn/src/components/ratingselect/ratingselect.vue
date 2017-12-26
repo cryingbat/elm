@@ -45,7 +45,6 @@
 		  },
 		methods: {
 			select(type){
-
 				this.selectType = type;
 				this.$root.eventHub.$emit('ratingselect', this.selectType);
 			},
