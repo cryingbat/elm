@@ -45,12 +45,11 @@
 		  },
 		methods: {
 			select(type){
-				this.selectType = type;
-				this.$root.eventHub.$emit('ratingselect', this.selectType);
+				this.$emit('ratingselect', type);
 			},
-			toogleContent() {
-				this.onlyContent = !this.onlyContent;
-				this.$root.eventHub.$emit('toogleContent', this.onlyContent);
+			toogleContent(type2) {
+				var type2 = !this.onlyContent;
+				this.$emit('toogleContent', type2);
 			}
 		},
 		computed:{
@@ -78,7 +77,7 @@
 	.block.negative.active{background: rgba(77,85,93,1);}
 	.block .count{font-size: 8px;margin-left: 2px}
 	.switch{padding: 12px 18px ;line-height: 24px;font-size: 12px;border-bottom: 1px solid rgba(7,17,27,.1);color: rgb(147,153,159);font-size: 0}
-	.icon-check_circle{margin-right: 4px; font-size: 24px}
+	.icon-check_circle{margin-right: 4px; font-size: 24px;width: 24px;height: 24px;display: inline-block;}
 	.switch.on .icon-check_circle{color:#00c850;}
 	.switch .text{font-size: 12px;vertical-align: top}
 </style>

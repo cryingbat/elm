@@ -43,7 +43,7 @@
 	</div>
 </template>
 
-<script type='text/ecmascript-6'>
+<script>
 	import Bscroll from "better-scroll"
 	import food from "@/components/food/food"
 	import shopcart from "@/components/shopcart/shopcart"
@@ -107,7 +107,6 @@
 		methods :{
 			selectFood(food) {
 				this.selectedFood = food;
-				console.log(this.selectedFood)
 				this.$refs.food.show();
 			},
 			selectMenu(index,event) {

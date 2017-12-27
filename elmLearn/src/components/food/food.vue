@@ -31,7 +31,7 @@
 	 		<split v-show="food.info"></split>
 	 		<div class="rating-page">
 	 			<h1 class="rating-title">商品评价</h1>
-	 			<ratingselect :selectType="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
+	 			<ratingselect @ratingselect="ratingSelect" @toogleContent="toogleContent" :selectType="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
 	 			<div class="rating-wrapper">
 	 				<ul v-show="food.ratings && food.ratings.length">
 	 					<li v-show="needShow(rating.rateType,rating.text)" v-for="rating in food.ratings" class="rating-item">
@@ -81,20 +81,6 @@ import {formatDate} from "@/common/js/formatDate"
 				}
 			}
 		},
-		created() {
-		 this.$root.eventHub.$on('ratingselect',(type) => {
-		    this.change(type);
-		    this.$nextTick(() => {
-		    	this.scroll.refresh()
-		    })
-		  });
-		 this.$root.eventHub.$on('toogleContent',(type2) => {
-		    this.change2(type2);
-		    this.$nextTick(() => {
-		    	this.scroll.refresh()
-		    })
-		  });
-		},
 		filters:{
 			formatDate(time) {
 				let date =new Date(time);
@@ -102,11 +88,17 @@ import {formatDate} from "@/common/js/formatDate"
 			}
 		},
 		methods:{
-			change(type) {
+			ratingSelect(type) {
 				this.selectType = type;
+				this.$nextTick(() => {
+		    		this.scroll.refresh()
+		    	})
 			},
-			change2(type2) {
+			toogleContent(type2) {
 				this.onlyContent = type2;
+				this.$nextTick(() => {
+		    		this.scroll.refresh()
+		    	})
 			},
 			show() {
 				this.showFlag = true;
@@ -148,11 +140,9 @@ import {formatDate} from "@/common/js/formatDate"
 </script>
 
 <style type="text/css" scoped>
-	.food{position: fixed;left: 0;top: 0;bottom: 48px;z-index: 30;width: 100%;background: #fff;}
-	.move-fade-enter{transform: translate3d(100%,0,0);}
+	.food{position: fixed;left: 0;top: 0;bottom: 48px;z-index: 30;width: 100%;background: #fff;transform: translate3d(0,0,0);}
+	.move-fade-enter,.move-fade-leave-active{transform: translate3d(100%,0,0);}
 	.move-fade-enter-active,.move-fade-leave-active{transition: all 0.3s linear;}
-	/*.move-fade-leave{transform: translate3d(0,0,0);}*/
-	.move-fade-leave-active{transform: translate3d(0,0,0);}
 	.image-header{position: relative;width: 100%;}
 	.image-header img{top: 0;left: 0;width: 100%;height: 100%}
 	.back{position: absolute;left: 2px;top: 10px;}

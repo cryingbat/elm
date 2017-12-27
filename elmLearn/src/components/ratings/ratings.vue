@@ -25,7 +25,7 @@
 				</div>
 			</div>
 			<split></split>
-			<ratingselect :selectType="selectType" :onlyContent="onlyContent" :desc="desc" :ratings="ratings"></ratingselect>
+			<ratingselect @ratingselect="ratingSelect" @toogleContent="toogleContent" :selectType="selectType" :onlyContent="onlyContent" :desc="desc" :ratings="ratings"></ratingselect>
 			<div class='rating-warpper'>
 				<ul>
 					<li v-for="rating in ratings" v-show="needShow(rating.rateType,rating.text)" class="rating-item">
@@ -100,20 +100,7 @@ import ratingselect from "@/components/ratingselect/ratingselect"
 					})
 					})
 				}
-			}),
-
-		 this.$root.eventHub.$on('ratingselect',(type) => {
-		 	this.selectType = type;
-		    this.$nextTick(() => {
-		    	this.scroll.refresh()
-		    })
-		  });
-		 this.$root.eventHub.$on('toogleContent',(type2) => {
-		   this.onlyContent = type2;
-		    this.$nextTick(() => {
-		    	this.scroll.refresh()
-		    })
-		  });
+			})
 		},
 		methods:{
 			needShow(type,text) {
@@ -125,7 +112,20 @@ import ratingselect from "@/components/ratingselect/ratingselect"
 				}else{
 					return type === this.selectType
 				}
+			},
+			ratingSelect(type) {
+				this.selectType = type;
+		    this.$nextTick(() => {
+		    	this.scroll.refresh()
+		    })
+			},
+			toogleContent(type2) {
+				this.onlyContent = type2;
+		    this.$nextTick(() => {
+		    	this.scroll.refresh()
+		    })
 			}
+
 		}
 	}
 </script>
