@@ -68,6 +68,7 @@
 
 <script>
 import star from "@/components/star/star"
+import {saveToLocal,loadFormLocal} from "@/common/js/store"
 import split from "@/components/split/split"
 import Bscroll from "better-scroll"
 	export default {
@@ -78,7 +79,9 @@ import Bscroll from "better-scroll"
 		},
 		data() {
 			return {
-				favorite:false
+				favorite:(() => {
+					return loadFormLocal(this.seller.id,"favorite",false)
+				})()
 			}
 		},
 		components:{
@@ -128,7 +131,8 @@ import Bscroll from "better-scroll"
 			  }
 			},
 			toggleFavorite() {
-				this.favorite = !this.favorite
+				this.favorite = !this.favorite;
+				saveToLocal(this.seller.id,"favorite",this.favorite)
 			}
 		},
 		computed:{

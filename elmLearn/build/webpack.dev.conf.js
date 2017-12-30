@@ -21,26 +21,6 @@ app.use('/api', apiRoutes)
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
-// apiRouter.get('/goods',function (req,res) {
-//   res.json({
-//     errno: 0,
-//     data: goods
-//   })
-// })
-// apiRouter.get('/seller',function (req,res) {
-//   res.json({
-//     errno: 0,
-//     data: seller
-//   })
-// })
-// apiRouter.get('/ratings',function (req,res) {
-//   res.json({
-//     errno: 0,
-//     data: ratings
-//   })
-// })
-
-
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
